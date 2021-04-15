@@ -2,13 +2,13 @@ package covid;
 
 import java.util.Comparator;
 
-public class CompareByCRF<RaceData> implements Comparator<RaceData> {
+public class CompareByCRF implements Comparator<RaceData> {
 
 
     @Override
-    public int compare(RaceData o1, RaceData o2) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int compare(RaceData race1, RaceData race2) 
+    {
+        return (int) ( ( race1.getCFRatio() - race2.getCFRatio() ) * 100 );
     }
 
 }

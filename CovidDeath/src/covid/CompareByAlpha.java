@@ -2,12 +2,12 @@ package covid;
 
 import java.util.Comparator;
 
-public class CompareByAlpha<RaceData> implements Comparator<RaceData> {
+public class CompareByAlpha implements Comparator<RaceData> {
 
     @Override
-    public int compare(RaceData o1, RaceData o2) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int compare(RaceData race1, RaceData race2) 
+    {
+        return race1.getName().compareTo( race2.getName() );
     }
 
 }
