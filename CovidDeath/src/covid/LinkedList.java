@@ -1,8 +1,9 @@
 package covid;
 
-public class LinkedList<T> implements LList {
+import list.ListInterface;
 
-    @Override
+public class LinkedList<T> implements ListInterface<T> {
+
     public int size() {
         // TODO Auto-generated method stub
         return 0;
@@ -26,19 +27,13 @@ public class LinkedList<T> implements LList {
         return false;
     }
 
-    @Override
     public boolean remove(Object obj) {
         // TODO Auto-generated method stub
         return false;
     }
 
-    @Override
-    public boolean remove(int index) {
-        // TODO Auto-generated method stub
-        return false;
-    }
 
-    @Override
+
     public Object get(int index) {
         // TODO Auto-generated method stub
         return null;
@@ -56,10 +51,35 @@ public class LinkedList<T> implements LList {
         
     }
 
+
     @Override
-    public int lastIndexOf(Object obj) {
+    public T getEntry(int arg0) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int getLength() {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public T remove(int arg0) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Object replace(int arg0, Object arg1) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
