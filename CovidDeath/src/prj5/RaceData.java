@@ -10,7 +10,14 @@ public class RaceData {
     public RaceData( String name, int cases, int deaths )
     {
         this.name = name;
-        this.cases = cases;
+        if ( cases == 0 )
+        {
+            cases = 1;
+        }
+        else
+        {
+            this.cases = cases;
+        }
         this.deaths = deaths;
         cfRatio = ( deaths / cases ) * 100;
     }
@@ -25,9 +32,24 @@ public class RaceData {
         return cases;
     }
     
+    public void setCases( int newCases )
+    {
+        if ( newCases != 0 )
+        {
+            cases = newCases;
+            cfRatio = ( deaths / cases ) * 100;
+        }
+    }
+    
     public int getDeaths()
     {
         return deaths;
+    }
+    
+    public void setDeaths( int newDeaths )
+    {
+        deaths = newDeaths;
+        cfRatio = ( deaths / cases ) * 100;
     }
     
     public double getCFRatio()
