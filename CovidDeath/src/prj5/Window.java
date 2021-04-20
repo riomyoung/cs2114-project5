@@ -1,4 +1,4 @@
-package covid;
+package prj5;
 
 import cs2.Button;
 import cs2.Shape;

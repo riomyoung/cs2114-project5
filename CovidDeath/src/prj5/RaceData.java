@@ -1,4 +1,4 @@
-package covid;
+package prj5;
 
 public class RaceData {
 
