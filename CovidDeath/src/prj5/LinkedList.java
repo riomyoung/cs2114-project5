@@ -1,5 +1,6 @@
 package prj5;
 
+import java.util.Comparator;
 import bag.Node;
 import list.ListInterface;
 
@@ -110,6 +111,12 @@ public class LinkedList<T> implements ListInterface<T> {
     public T replace(int index, T item) {
         return null;
     }
+    
+    public void sort( Comparator<RaceData> comparator )
+    {
+        
+    }
+    
 
     @Override
     public Object[] toArray() {

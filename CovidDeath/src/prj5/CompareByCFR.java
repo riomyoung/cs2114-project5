@@ -2,7 +2,7 @@ package prj5;
 
 import java.util.Comparator;
 
-public class CompareByCRF implements Comparator<RaceData> {
+public class CompareByCFR implements Comparator<RaceData> {
 
 
     @Override

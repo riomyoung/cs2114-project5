@@ -2,6 +2,7 @@ package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -89,9 +90,15 @@ public class FileParser {
         {
             State currentState = states.getEntry(i);
             System.out.println( currentState.getName() );
+            
             //SORT ALPHA
+            CompareByAlpha compA = new CompareByAlpha();
+            currentState.getRaces().sort( compA );
             printRaces( currentState );
+            
             //SORT CFRATIO
+            CompareByCFR compCFR = new CompareByCFR();
+            currentState.getRaces().sort( compCFR );
             printRaces( currentState );
             
         }
