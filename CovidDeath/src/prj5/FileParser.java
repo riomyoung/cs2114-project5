@@ -88,11 +88,12 @@ public class FileParser {
         for ( int i = 0; i < states.size(); i++ )
         {
             State currentState = states.getEntry(i);
-            System.out.print( currentState.getName() + "   ");
-            for ( int j = 0; j < currentState.getRaces().size(); j++ )
-            {
-                System.out.println( currentState.getRaces().getEntry(j).toString());
-            }
+            System.out.println( currentState.getName() );
+            //SORT ALPHA
+            printRaces( currentState );
+            //SORT CFRATIO
+            printRaces( currentState );
+            
         }
         
     }
@@ -106,6 +107,20 @@ public class FileParser {
     public LinkedList<State> getStates()
     {
         return states;
+    }
+    
+    /**
+     * Prints states and races in certain order
+     * 
+     */
+    private void printRaces( State currentState )
+    {
+        for ( int j = 0; j < currentState.getRaces().size(); j++ )
+        {
+            System.out.println( currentState.getRaces().getEntry(j).toString());
+        }
+        
+        System.out.println("=====");
     }
     
 
