@@ -6,29 +6,51 @@ import list.ListInterface;
 public class LinkedList<T> implements ListInterface<T> {
     
     private Node<T> firstNode;
+    private int size;
     
     public LinkedList()
     {
+        firstNode = null;
+        size = 0;
     }
 
     public int size() 
     {
-        return 0;
+        return size;
     }
 
     @Override
-    public void add(int index, Object obj) {
+    public void add(int index, T element) {
         
     }
 
     @Override
-    public void add(Object obj) {
-        
+    public void add(T item) 
+    {
+        if (item == null) {
+            throw new IllegalArgumentException("Object is null");
+        }
+
+        Node<T> current = firstNode;
+
+        // empty stack case
+        if (isEmpty()) {
+            firstNode = new Node<T>(item);
+        }
+
+        // other cases
+        else {
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(new Node<T>(item));
+        }
+        size++;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return firstNode == null;
     }
 
     public boolean remove( T item ) {
@@ -53,8 +75,25 @@ public class LinkedList<T> implements ListInterface<T> {
 
 
     @Override
-    public T getEntry(int index) {
-        return null;
+    public T getEntry(int index) 
+    {
+        Node<T> current = firstNode;
+        int currentIndex = 0;
+        T data = null;
+        while (current != null) {
+            if (currentIndex == index) {
+                data = current.getData();
+            }
+            currentIndex++;
+            current = current.getNext();
+        }
+
+        // check if the data was null...
+        if (data == null) {
+            // ... if so throw an exception
+            throw new IndexOutOfBoundsException("Index exceeds the size.");
+        }
+        return data;
     }
 
     @Override
