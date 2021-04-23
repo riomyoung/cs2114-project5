@@ -43,6 +43,9 @@ public class FileParserTest extends TestCase {
         assertNotNull(exception);
     }
     
+    /**
+     * Tests getStates
+     */
     public void testGetStates()
     {
 //        State newState = new State( "DC");
