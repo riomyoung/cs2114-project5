@@ -53,7 +53,7 @@ public class State {
     /**
      * Returns name of state
      * 
-     *@param name
+     *@return name
      *      
      */
     public String getName()

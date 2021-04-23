@@ -2,7 +2,6 @@ package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -56,7 +55,8 @@ public class FileParser {
             for ( int i = 0; i < raceNames.size(); i++ )
             {
 //                System.out.print( currentLine[i] + "   ");
-                int cases, deaths;
+                int cases; 
+                int deaths;
                 try 
                 {
                     cases = Integer.parseInt(currentLine[ i + 1 ]);

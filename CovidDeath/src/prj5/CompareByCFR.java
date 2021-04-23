@@ -2,6 +2,12 @@ package prj5;
 
 import java.util.Comparator;
 
+/**
+ *  Comparator for increasing CFR
+ *
+ * @author Rio Young  (riomyoung)
+ * @version 2021.04.23
+ */
 public class CompareByCFR implements Comparator<RaceData> {
 
 

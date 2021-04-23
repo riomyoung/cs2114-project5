@@ -2,6 +2,12 @@ package prj5;
 
 import java.util.Comparator;
 
+/**
+ *  Comparator for alphabetical order
+ *
+ * @author Rio Young  (riomyoung)
+ * @version 2021.04.23
+ */
 public class CompareByAlpha implements Comparator<RaceData> {
 
     @Override

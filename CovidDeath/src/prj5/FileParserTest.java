@@ -33,7 +33,7 @@ public class FileParserTest extends TestCase {
     public void testException()
     {
         Exception exception = null;
-        try{
+        try {
             parser = new FileParser( "aaa" );
         }
         catch (FileNotFoundException e)
