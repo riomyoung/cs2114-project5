@@ -19,6 +19,7 @@ public class Input {
         }
         
         WindowBackEnd backEnd = new WindowBackEnd( parser.getStates() );
+        CovidWindow window = new CovidWindow( backEnd );
     }
 
 }
