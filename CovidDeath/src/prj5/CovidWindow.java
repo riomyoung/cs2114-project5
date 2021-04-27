@@ -53,6 +53,7 @@ public class CovidWindow {
         window.addButton(sortCFR, WindowSide.NORTH);
         
         states = backEnd.getList();
+        representButtons = new Button[ states.size() ];
         createStateButtons();
         
         currentState = states.getEntry(0);
@@ -75,6 +76,7 @@ public class CovidWindow {
             Button newButton = new 
                 Button("Represent " + states.getEntry(i).getName() );
             newButton.onClick(this, "clickedRepState" );
+            representButtons[i] = new Button();
             window.addButton(newButton, WindowSide.SOUTH);
         }
     }
@@ -160,10 +162,12 @@ public class CovidWindow {
      */
     public void clickedRepState( Button button )
     {
-        //TODO: Bottom is for testing
+    //TODO: Random int is for testing
+    //Need to check which button is pressed and 
+        //update currentState
+        //call createRaceShapes()
+        //call updateTitle
         Random rand = new Random();
-        
-        // Generate random integers in range 0 to 999
         int random = rand.nextInt(6);
         currentState = states.getEntry(random);
         createRaceShapes();
