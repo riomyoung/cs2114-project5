@@ -1,12 +1,18 @@
 package prj5;
 
 import java.awt.Color;
+import java.util.Random;
 import cs2.Button;
 import cs2.Shape;
 import cs2.TextShape;
 import cs2.Window;
 import cs2.WindowSide;
-
+/**
+ * Creates a window Covid statistics
+ *
+ * @author Rio Young  riomyoung
+ * @version 2021.04.26
+ */
 public class CovidWindow {
 
     private Window window;
@@ -15,12 +21,21 @@ public class CovidWindow {
     private Button sortCFR;
     private Button sortAlpha;
     private Shape[] raceBars;
+    private TextShape[] raceNames;
+    private TextShape[] raceCFR;
     private TextShape title;
     private LinkedList<State> states;
     private State currentState;
     private final double barHeight = 20.0;
     private final double barWidth = 20.0;
     
+    /**
+     * Creates new CovidWindow object
+     *
+     * @param backEnd
+     *      backEnd containing relevant information
+     * 
+     */
     public CovidWindow( WindowBackEnd backEnd )
     {
         window = new Window();
@@ -41,26 +56,39 @@ public class CovidWindow {
         createStateButtons();
         
         currentState = states.getEntry(0);
+        raceBars = null;
+        raceNames = null;
+        raceCFR = null;
         createRaceShapes();
-        updateTitle( currentState.getName() );
+        updateTitle();
             
     }
     
+    /**
+     * Creates buttons for each state
+     *
+     */
     private void createStateButtons()
     {
         for ( int i = 0; i < states.size(); i++ )
         {
             Button newButton = new 
                 Button("Represent " + states.getEntry(i).getName() );
-            newButton.onClick(this, 
-                "clicked" + states.getEntry(i).getName() );
+            newButton.onClick(this, "clickedRepState" );
             window.addButton(newButton, WindowSide.SOUTH);
         }
     }
     
-    private void updateTitle( String name )
+    /**
+     * Updates the title
+     *
+     * @param name
+     *      name of state
+     */
+    private void updateTitle()
     {
-        TextShape title = new TextShape(0, 0,
+        String name = currentState.getName();
+        title = new TextShape(0, 0,
             name + " Case Fatality Ratios by Race" );
         int x = (window.getGraphPanelWidth() / 2) - (title.getWidth()
             / 2);
@@ -70,19 +98,39 @@ public class CovidWindow {
         window.addShape(title);
     }
     
+    /**
+     * Creates bar graph representing the data
+     *
+     */
     private void createRaceShapes()
     {
         LinkedList<RaceData> races = currentState.getRaces();
         int barSpacing = window.getGraphPanelWidth() / ( races.size() + 1 );
         int windowHeight = window.getGraphPanelHeight();
         int bottomSpacing = 50;
+        window.removeAllShapes();
+
+        //If no shapes already added to 
+        if ( raceBars == null )
+        {
+            raceBars = new Shape[ races.size()];
+            raceNames = new TextShape[ races.size()];
+            raceCFR = new TextShape[ races.size()];
+            for ( int i = 0; i < races.size(); i++ )
+            {
+                raceBars[i] = new Shape(0, 0);
+                raceNames[i] = new TextShape(0, 0, null);
+                raceCFR[i] = new TextShape(0, 0, null);
+            }
+        }
         
+        //Updating states
         for ( int i = 0; i < races.size(); i++ )
         {
             int x = (int)(barSpacing + i * barSpacing - ( barWidth / 2));
             int height = (int)(barHeight * ( races.getEntry(i).getCFRatio() ));
             
-            Shape newShape = new Shape(
+            raceBars[i] = new Shape(
                 x, 
                 windowHeight - height - bottomSpacing,
                 (int) barWidth, 
@@ -90,64 +138,75 @@ public class CovidWindow {
                 Color.blue );
             races.getEntry(i);
             
-            window.addShape(newShape);
+            window.addShape( raceBars[i] );
             
-            TextShape race = new TextShape( 
+            raceNames[i] = new TextShape( 
                 x - (int) barWidth / 2,
                 windowHeight - bottomSpacing,
                 races.getEntry(i).getName());
-            window.addShape(race);
+            window.addShape(raceNames[i]);
             
-            TextShape CFR = new TextShape( 
+            raceCFR[i] = new TextShape( 
                 x - (int) barWidth / 2,
-                windowHeight - bottomSpacing + race.getHeight(),
+                windowHeight - bottomSpacing + raceNames[i].getHeight(),
                 races.getEntry(i).getCFRatio() + "%");
-            window.addShape(CFR);
+            window.addShape(raceCFR[i]);
         }
     }
+    
+    /**
+     * Changes currently viewed state
+     *
+     */
     public void clickedRepState( Button button )
     {
+        //TODO: Bottom is for testing
+        Random rand = new Random();
         
+        // Generate random integers in range 0 to 999
+        int random = rand.nextInt(6);
+        currentState = states.getEntry(random);
+        createRaceShapes();
+        updateTitle();
     }
+    
+    /**
+     * Sorts data by alphabetical order
+     *
+     * @param button
+     *      button being pressed
+     */
     public void clickedSortAlpha( Button button )
     {
         CompareByAlpha compA = new CompareByAlpha();
         states.sort( compA );
+        createRaceShapes();
     }
+    
+    /**
+     * Sorts data by CFRatio
+     *
+     * @param button
+     *      button being pressed
+     */
     public void clickedSortCFR( Button button )
     {
         CompareByCFR compCFR = new CompareByCFR();
         states.sort( compCFR );
         createRaceShapes();
     }
+    
+    /**
+     * Quits application
+     *
+     * @param button
+     *      button being pressed
+     */
     public void clickedQuit( Button button )
     {
         System.exit( 0 );
     }
     
-    public void clickedDC( Button button )
-    {
-        
-    }
-    public void clickedGA( Button button )
-    {
-        
-    }
-    public void clickedMD( Button button )
-    {
-        
-    }
-    public void clickedNC( Button button )
-    {
-        
-    }
-    public void clickedTN( Button button )
-    {
-        
-    }
-    public void clickedVA( Button button )
-    {
-        
-    }
+   
     
 }
